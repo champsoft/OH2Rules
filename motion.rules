@@ -1,0 +1,114 @@
+
+var DecimalType hue
+var PercentType sat
+var PercentType bright
+var HSBType hsb
+
+//var HSBType prev_hsb = new HSBType(new DecimalType(0), new PercentType(0), new PercentType(0)) 
+
+var boolean isChanged = false
+var boolean isOn = false
+var boolean colorChange = false
+
+var DecimalType prev_hue
+var PercentType prev_sat
+var PercentType prev_bright = new PercentType(0)
+
+var DecimalType cur_hue
+var PercentType cur_sat
+
+
+rule "Perform tasks when outside camera motion is detected"
+when
+	Item Outside_Camera1_Motion changed to ON
+then
+	//Get the current light properties
+	val httpRGB = GF_Lab_Light3_Color.state.toString()
+    val parts =  httpRGB.split(",")
+    hue = new DecimalType(Integer::parseInt(parts.get(0)))
+    sat = new PercentType(Integer::parseInt(parts.get(1)))
+    bright = new PercentType(Integer::parseInt(parts.get(2))) 
+    hsb = new HSBType(hue, sat, bright)
+    
+    if(isChanged && bright != prev_bright) {
+    	//Get original values when lights cycle off and on too quickly
+    	hue = prev_hue
+    	sat = prev_sat
+    	bright = prev_bright
+    }
+
+	logDebug("FILE", "isChanged = " + isChanged + " : HSB = " + hsb)
+	
+	//Set a specific color
+	cur_hue = new DecimalType(252) // 0-360; 0=red, 120=green, 240=blue, 360=red(again)
+	cur_sat = new PercentType(70) // 0-100
+	val PercentType cur_bright = new PercentType(60) // 0-100
+	val HSBType cur_hsb = new HSBType(cur_hue,cur_sat,cur_bright)	
+
+	//if (now.isAfter((Sunset_Time.state as DateTimeType).calendar.timeInMillis)) {
+		sendCommand(GF_Lab_Light3_Color, cur_hsb) 
+	//}
+	isOn = true
+	isChanged = false
+	colorChange = false
+end
+
+rule "Perform tasks when outside camera motion is ended"
+when
+	Item Outside_Camera1_Motion changed to OFF
+then
+	colorChange = false
+	if(bright > 0) {
+		isChanged = false
+		sendCommand(GF_Lab_Light3_Color, hsb)
+	} 
+	else{
+		//Hue lights will loose original color values and adapt the new values when suddenly turned off
+		//Preserve original values when that happens
+		prev_hue = hue
+		prev_sat = sat
+		prev_bright = bright 
+		isChanged = true
+		
+		val newHsb = new HSBType(hue, sat, new PercentType(20)) 
+
+		sendCommand(GF_Lab_Light3_Color, newHsb)
+		Thread.sleep(10)
+		sendCommand(GF_Lab_Light3_Toggle, OFF)
+	}
+	isOn = false
+end
+
+rule "Capture light properties when the light switches off outside of OH2"
+when
+	Item GF_Lab_Light3_Toggle changed to OFF
+then
+	logDebug("FILE", "PowerToggle() : IsOn = " + isOn)
+	if(isOn){
+		bright = new PercentType(0)
+		logDebug("FILE", "***Bright changed to 0")
+	}
+end
+
+rule "Capture light properties when the light color changes outside of OH2"
+when
+	Item GF_Lab_Light3_Color changed
+then
+	if(isOn && colorChange){
+		logDebug("FILE", "ColorChanged() Bright = " + bright)
+		//Get the current light properties
+	 	val httpRGB = GF_Lab_Light3_Color.state.toString()
+	 	val parts =  httpRGB.split(",")
+	 	val changeHue = new DecimalType(Integer::parseInt(parts.get(0)))
+	 	val changeSat = new PercentType(Integer::parseInt(parts.get(1)))
+	 	
+	 	if(cur_hue !=  changeHue && cur_sat != changeSat)	{
+    		hue = changeHue
+    		sat = changeSat
+    		//bright = new PercentType(20)
+    		hsb = new HSBType(hue, sat, bright) 
+   	 	}
+	}
+	logDebug("FILE", "ColorChanged() : IsOn = " + isOn + " : ColorCHange = " + colorChange + " : HSB = " + hsb)
+	colorChange = true
+end 

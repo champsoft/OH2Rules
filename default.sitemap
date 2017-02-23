@@ -1,0 +1,248 @@
+sitemap default label="Main"
+{    
+    /*Frame {
+	Group item=gFF
+	Group item=gGF
+	Group item=gOutside
+    } */
+
+  	 Frame label="Bedroom" {
+		Frame label="Light 1" {
+			Switch item=FF_BR_Light1_Toggle
+			Slider item=FF_BR_Light1_Dimmer
+			Colorpicker item=FF_BR_Light1_Color
+			Slider item=FF_BR_Light1_ColorTemp
+			Switch item=FF_BR_Light1_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_BR_Light1_Effect
+    	}
+    	Frame label="Light 2" {
+			Switch item=FF_BR_Light2_Toggle
+			Slider item=FF_BR_Light2_Dimmer
+			Switch item=FF_BR_Light2_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+    	}
+		Frame label="Sonos" {
+			Text item=FF_BR_Sonos_Track
+			Text item=FF_BR_Sonos_Title
+			Text item=FF_BR_Sonos_Album
+			Text item=FF_BR_Sonos_Artist
+			Switch item=FF_BR_Sonos_Control mappings=[PREVIOUS="<<",PLAY=">",PAUSE="||",NEXT=">>"]
+			Slider item=FF_BR_Sonos_Volume
+		}
+		Frame label="Wemo" {
+			Switch item=FF_BR_Wemo_Switch
+			Text item=FF_BR_Wemo_Power
+			Text item=FF_BR_Wemo_LastOn
+			Text item=FF_BR_Wemo_Energy
+			Text item=FF_BR_Wemo_Today
+			Text item=FF_BR_Wemo_Total
+		}
+	}
+
+	Frame label="Omar's Room" {
+			Frame label="Light" {
+			Switch item=FF_OBR_Light1_Switch
+			Slider item=FF_OBR_Light1_Dimmer
+		}
+	}
+
+	Frame label="Soph's Room" {
+		Frame label="Light 1" {
+			Switch item=FF_SBR_Light1_Toggle
+			Slider item=FF_BR_Light1_Dimmer
+			Colorpicker item=FF_SBR_Light1_Color
+			Slider item=FF_SBR_Light1_ColorTemp
+			Switch item=FF_SBR_Light1_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_SBR_Light1_Effect
+    	}
+		Frame label="Light 2" {
+			Switch item=FF_SBR_Light2_Toggle
+			Slider item=FF_SBR_Light2_Dimmer
+			Switch item=FF_SBR_Light2_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+		}
+		Frame label="Sonos" {
+			Text item=FF_SBR_Sonos_Track
+			Text item=FF_SBR_Sonos_Title
+			Text item=FF_SBR_Sonos_Album
+			Text item=FF_SBR_Sonos_Artist
+			Switch item=FF_SBR_Sonos_Control mappings=[PREVIOUS="<<",PLAY=">",PAUSE="||",NEXT=">>"]
+			Slider item=FF_SBR_Sonos_Volume
+		}
+		Frame label="Wemo" {
+			Switch item=Wemo_FF_SBR_Switch
+		}
+	}
+
+	Frame label="Upstairs Hallway" {
+		Frame label="Hallway Light" {
+			Switch item=FF_UH_Light1_Switch
+			Slider item=FF_UH_Light1_Dimmer
+		}
+	}
+
+	Frame label="Dining Room" {
+    	Frame label="Light 1" {
+			Switch item=FF_DR_Light1_Toggle
+			Slider item=FF_DR_Light1_Dimmer
+			Colorpicker item=FF_DR_Light1_Color
+			Slider item=FF_DR_Light1_ColorTemp
+			Switch item=FF_DR_Light1_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_DR_Light1_Effect
+    	}
+		Frame label="Light 2" {
+			Switch item=FF_DR_Light2_Toggle
+			Slider item=FF_DR_Light2_Dimmer
+			Colorpicker item=FF_DR_Light2_Color
+			Slider item=FF_DR_Light2_ColorTemp
+			Switch item=FF_DR_Light2_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_DR_Light2_Effect
+    	}
+		Frame label="Light 3" {
+			Switch item=FF_DR_Light3_Toggle
+			Slider item=FF_DR_Light3_Dimmer
+			Colorpicker item=FF_DR_Light3_Color
+			Slider item=FF_DR_Light3_ColorTemp
+			Switch item=FF_DR_Light3_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_DR_Light3_Effect
+    	}
+	}
+
+	Frame label="Living Room" {
+    	Frame label="Light 1" {
+			Switch item=FF_LR_Light1_Toggle
+			Slider item=FF_LR_Light1_Dimmer
+			Colorpicker item=FF_LR_Light1_Color
+			Slider item=FF_LR_Light1_ColorTemp
+			Switch item=FF_LR_Light1_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_LR_Light1_Effect
+    	}
+		Frame label="Light 2" {
+			Switch item=FF_LR_Light2_Toggle
+			Slider item=FF_LR_Light2_Dimmer
+			Colorpicker item=FF_LR_Light2_Color
+			Slider item=FF_LR_Light2_ColorTemp
+			Switch item=FF_LR_Light2_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_LR_Light2_Effect
+    	}
+		Frame label="Light 3" {
+			Switch item=FF_LR_Light3_Toggle
+			Slider item=FF_LR_Light3_Dimmer
+			Colorpicker item=FF_LR_Light3_Color
+			Slider item=FF_LR_Light3_ColorTemp
+			Switch item=FF_LR_Light3_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_LR_Light3_Effect
+    	}
+		Frame label="Living Room 4 Light" {
+			Switch item=FF_LR_Light4_Switch
+    		Slider item=FF_LR_Light4_Dimmer
+    	}
+		Frame label="Sonos" {
+			Text item=FF_LR_Sonos_Track
+			Text item=FF_LR_Sonos_Title
+			Text item=FF_LR_Sonos_Album
+			Text item=FF_LR_Sonos_Artist
+			Switch item=FF_LR_Sonos_Control mappings=[PREVIOUS="<<",PLAY=">",PAUSE="||",NEXT=">>"]
+			Slider item=FF_LR_Sonos_Volume
+		}
+		Frame label="Harmony" {
+			Switch item=FF_LR_Harmony_Activity mappings=[PowerOff="Power Off","Watch a Movie"="DVD","Listen To Living Room Sonos"="Sonos","Watch Nexus Player"="Android TV","Watch TV"="Media Center"]
+		}
+	}
+
+	Frame label="Entrance" {
+ 		Frame label="Light" {
+			Switch item=FF_EN_Light1_Toggle
+			Slider item=FF_EN_Light1_Dimmer
+			Colorpicker item=FF_EN_Light1_Color
+			Slider item=FF_EN_Light1_ColorTemp
+			Switch item=FF_EN_Light1_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=FF_EN_Light1_Effect
+    	}
+    }
+
+   Frame label="Outside" {
+    	Frame label="Light 1" {
+			Switch item=Outside_Light1_Toggle
+			Slider item=Outside_Light1_Dimmer
+			Colorpicker item=Outside_Light1_Color
+			Slider item=Outside_Light1_ColorTemp
+			Switch item=Outside_Light1_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=Outside_Light1_Effect
+    	}
+		Frame label="Light 2" {
+			Switch item=Outside_Light2_Toggle
+			Slider item=Outside_Light2_Dimmer
+			Colorpicker item=Outside_Light2_Color
+			Slider item=Outside_Light2_ColorTemp
+			Switch item=Outside_Light2_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=Outside_Light2_Effect
+    	}
+		Frame label="Light 3" {
+			Switch item=Outside_Light3_Toggle
+			Slider item=Outside_Light3_Dimmer
+			Colorpicker item=Outside_Light3_Color
+			Slider item=Outside_Light3_ColorTemp
+			Switch item=Outside_Light3_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=Outside_Light3_Effect
+		}
+		Frame label="Light 4" {
+			Switch item=Outside_Light4_Toggle
+			Slider item=Outside_Light4_Dimmer
+			Switch item=Outside_Light4_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+		}
+	 	Frame label="Camera Motion" {
+			Switch item=Outside_Camera1_Motion
+		}
+		Frame label="Astro" {
+			Text item=Sunrise_Time
+			Text item=Sunset_Time
+			Text item=Azimuth
+			Text item=Elevation
+			Text item=MoonPhase
+			Text item=Total_Radiation
+		}
+	} 
+
+	Frame label="Downstairs Hallway" {
+		Frame label="Light" {
+			Switch item=GF_DH_Light1_Switch
+			Slider item=GF_DH_Light1_Dimmer
+		}
+	}
+
+	Frame label="Lab" {
+		Frame label="Light 1" {
+			Switch item=GF_Lab_Light1_Switch
+    		Slider item=GF_Lab_Light1_Dimmer
+    	}
+    	Frame label="Light 2" {
+			Switch item=GF_Lab_Light2_Toggle
+			Slider item=GF_Lab_Light2_Dimmer
+			Switch item=GF_Lab_Light2_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+    	}
+		Frame label="Light 3" {
+			Switch item=GF_Lab_Light3_Toggle
+			Slider item=GF_Lab_Light3_Dimmer
+			Colorpicker item=GF_Lab_Light3_Color
+			Slider item=GF_Lab_Light3_ColorTemp
+			Switch item=GF_Lab_Light3_Alert mappings=[NONE="OFF", SELECT="FLASH1", LSELECT="FLASH2"]
+			Switch item=GF_Lab_Light3_Effect
+    	}
+		Frame label="Sonos" {
+			Text item=GF_Lab_Sonos_Track
+			Text item=GF_Lab_Sonos_Title
+			Text item=GF_Lab_Sonos_Album
+			Text item=GF_Lab_Sonos_Artist
+			Switch item=GF_Lab_Sonos_Control mappings=[PREVIOUS="<<",PLAY=">",PAUSE="||",NEXT=">>"]
+			Slider item=GF_Lab_Sonos_Volume
+		}
+		Frame label="Harmony" {
+			Switch item=GF_Lab_Harmony_Activity mappings=[PowerOff="Power Off","Watch DVD"="DVD","Listen to Lab Sonos"="Sonos","Play Lab Echo"="Alexa","Watch PC"="PC","Watch Chromecast"="Chromecast","Watch Roku"="Roku","Listen to Receiver"="Receiver"]
+		}	
+		Frame label="Wemo" {
+			Switch item=GF_Lab_Wemo_Switch
+		}	
+//		Frame label="Philips Speaker Bar" {
+//			Switch item=GF_Lab_SpeakerBar_Switch
+//		}
+	} 	
+}

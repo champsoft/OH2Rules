@@ -1,0 +1,251 @@
+Group gFF "First Floor" <firstfloor>
+Group gGF "Ground Floor" <groundfloor>
+Group gOutside "Outside" <garden>
+
+//First Floor Area
+Group gBR "Bedroom" <parents_6_6> (gFF)
+Group gOBR "Omar's Bedroom" <boy_6> (gFF)
+Group gSBR "Sophie's Bedroom" <girl_6> (gFF)
+Group gUH "Upstairs Hallway" <corridor> (gFF)
+Group gLR "Living Room" <sofa> (gFF)
+Group gDR "Dining Room" <terrace> (gFF)
+Group gEN "Entrance" <frontdoor> (gFF)
+
+//Ground Floor Area
+Group gDK "Downstairs Kitchen" <kitchen> (gGF)
+Group gGR "Garage" <garagedoor> (gGF)
+Group gDH "Downstairs Hallway" <corridor> (gGF)
+Group gLab "Lab" <office> (gGF)
+
+//Outside
+Group gFront <frontdoor> (gOutside)
+Group gSide <frontdoor> (gOutside)
+
+//***First Floor Items***
+//Bedroom Items
+//Bedroom Light 1
+Switch FF_BR_Light1_Toggle "Power" (gBR) {channel="hue:0210:1:5:color"}
+Dimmer FF_BR_Light1_Dimmer "Dimmer [%d %%]" (gBR) {channel="hue:0210:1:5:color"}
+Color FF_BR_Light1_Color "Color" <colorlight> (gBR) {channel="hue:0210:1:5:color"}
+Dimmer FF_BR_Light1_ColorTemp "Color Temp" (gBR) {channel="hue:hue:0210:1:5:color_temperature"}
+String FF_BR_Light1_Alert "Flash" <alarm> (gBR) {channel="hue:0210:1:5:alert"}
+Switch FF_BR_Light1_Effect "Color Loop" (gBR) {channel="hue:0210:1:5:effect"}
+
+//Bedroom 2 Light
+Switch FF_BR_Light2_Toggle "Power" (gBR) {channel="hue:0100:1:18:brightness"}
+Dimmer FF_BR_Light2_Dimmer "Dimmer" (gBR) {channel="hue:0100:1:18:brightness"}
+String FF_BR_Light2_Alert "Flash" (gBR) {channel="hue:0100:1:18:alert"}
+
+//Bedroom Sonos
+String FF_BR_Sonos_Zone  "[%s]"  (gBR)   {channel="sonos:zoneplayer:1:zonename"}
+String FF_BR_Sonos_Track  "Track [%s]" <player> (gBR)   {channel="sonos:zoneplayer:1:currenttrack"}
+String FF_BR_Sonos_Title  "Title [%s]" <player> (gBR)   {channel="sonos:zoneplayer:1:currenttitle"}
+String FF_BR_Sonos_Album  "Album [%s]" <player> (gBR)   {channel="sonos:zoneplayer:1:currentalbum"}
+String FF_BR_Sonos_Artist  "Artist [%s]"  <player> (gBR)   {channel="sonos:zoneplayer:1:currentartist"}
+Player FF_BR_Sonos_Control "" (gBR) {channel="sonos:zoneplayer:1:control"}
+Dimmer FF_BR_Sonos_Volume  "[%d %%]" <soundvolume> (gBR) {channel="sonos:zoneplayer:1:volume"}
+
+//Bedroom Wemo Insight
+Switch FF_BR_Wemo_Switch "On/Off" (gBR) {channel="wemo:insight:BedroomWemo:state"}
+Number FF_BR_Wemo_Power "Power Consumption" <energy>  (gBR) {channel="wemo:insight:BedroomWemo:currentPower"}
+Number FF_BR_Wemo_LastOn "Last On for" <energy> (gBR) {channel="wemo:insight:BedroomWemo:lastOnFor"}
+Number FF_BR_Wemo_Energy "Energy Today" <energy> (gBR) {channel="wemo:insight:BedroomWemo:energyToday"}
+Number FF_BR_Wemo_Today "On Today" <energy> (gBR) {channel="wemo:insight:BedroomWemo:onToday"}
+Number FF_BR_Wemo_Total "On Total" <energy> (gBR) {channel="wemo:insight:BedroomWemo:onTotal"}
+
+//***Omar's Room Items***
+//Omar's Light
+Switch FF_OBR_Light1_Switch "Power" (gOBR) {channel="zwave:device:c711576c:node11:switch_dimmer"}
+Dimmer FF_OBR_Light1_Dimmer "Dimmer [%d %%]" (gOBR) {channel="zwave:device:c711576c:node11:switch_dimmer"}
+
+//***Sophie's Room Items***
+//Sophie's Light 1
+Switch FF_SBR_Light1_Toggle "Power" (gSBR) {channel="hue:0210:1:13:color"}
+Dimmer FF_SBR_Light1_Dimmer "Dimmer [%d %%]" (gSBR) {channel="hue:0210:1:13:color"}
+Color FF_SBR_Light1_Color "Color" <colorlight> (gSBR) {channel="hue:0210:1:13:color"}
+Dimmer FF_SBR_Light1_ColorTemp "Color Temp" (gSBR) {channel="hue:hue:0210:1:13:color_temperature"}
+String FF_SBR_Light1_Alert "Flash" <alarm> (gSBR) {channel="hue:0210:1:13:alert"}
+Switch FF_SBR_Light1_Effect "Color Loop" (gSBR) {channel="hue:0210:1:13:effect"}
+
+//Sophie's Light 2
+Switch FF_SBR_Light2_Toggle "Power" (gSBR) {channel="hue:0100:1:19:brightness"}
+Dimmer FF_SBR_Light2_Dimmer "Dimmer" (gSBR) {channel="hue:0100:1:19:brightness"}
+String FF_SBR_Light2_Alert "Flash" <alarm> (gSBR) {channel="hue:0100:1:19:alert"}
+
+//Sophie's Sonos
+String FF_SBR_Sonos_Zone  "[%s]"  (gSBR)   {channel="sonos:zoneplayer:2:zonename"}
+String FF_SBR_Sonos_Track  "Track [%s]" <player> (gSBR)   {channel="sonos:zoneplayer:2:currenttrack"}
+String FF_SBR_Sonos_Title  "Title [%s]" <player> (gSBR)   {channel="sonos:zoneplayer:2:currenttitle"}
+String FF_SBR_Sonos_Album  "Album [%s]" <player> (gSBR)   {channel="sonos:zoneplayer:2:currentalbum"}
+String FF_SBR_Sonos_Artist  "Artist [%s]"  <player> (gSBR)   {channel="sonos:zoneplayer:2:currentartist"}
+Player FF_SBR_Sonos_Control "" (gSBR) {channel="sonos:zoneplayer:2:control"}
+Dimmer FF_SBR_Sonos_Volume  "[%d %%]" <soundvolume> (gSBR) {channel="sonos:zoneplayer:2:volume"}
+
+//Sophie's Wemo
+Switch FF_SBR_Wemo_Switch "On/Off" (gSBR) {channel="wemo:socket:SophieWemo:state"}
+
+//***Upstairs Hallway Items***
+Switch FF_UH_Light1_Switch "Power" (gUH) {channel="zwave:device:c711576c:node10:switch_dimmer"}
+Dimmer FF_UH_Light1_Dimmer "Dimmer [%d %%]" (gUH) {channel="zwave:device:c711576c:node10:switch_dimmer"}
+
+
+//***Dining Room Items***
+//Dining Room 1 Light 
+Switch FF_DR_Light1_Toggle "Power" (gDR) {channel="hue:0210:1:color"}
+Dimmer FF_DR_Light1_Dimmer "Dimmer [%d %%]" (gDR) {channel="hue:0210:1:6:color"}
+Color FF_DR_Light1_Color "Color" <colorlight> (gDR) {channel="hue:0210:1:6:color"}
+Dimmer FF_DR_Light1_ColorTemp "Color Temp" (gDR) {channel="hue:0210:1:6:color_temperature"}
+String FF_DR_Light1_Alert "Flash" <alarm> (gDR) {channel="hue:0210:1:6:alert"}
+Switch FF_DR_Light1_Effect "Color Loop" (gDR) {channel="hue:0210:1:6:effect"}
+
+//Dining Room 2 Light 
+Switch FF_DR_Light2_Toggle "Power" (gDR) {channel="hue:0210:1:7:color"}
+Dimmer FF_DR_Light2_Dimmer "Dimmer [%d %%]" (gDR) {channel="hue:0210:1:7:color"}
+Color FF_DR_Light2_Color "Color" <colorlight> (gDR) {channel="hue:0210:1:7:color"}
+Dimmer FF_DR_Light2_ColorTemp "Color Temp" (gDR) {channel="hue:0210:1:7:color_temperature"}
+String FF_DR_Light2_Alert "Flash" <alarm> (gDR) {channel="hue:0210:1:7:alert"}
+Switch FF_DR_Light2_Effect "Color Loop" (gDR) {channel="hue:0210:1:7:effect"}
+
+//Dining Room 3 Light 
+Switch FF_DR_Light3_Toggle "Power" (gDR) {channel="hue:0210:1:10:color"}
+Dimmer FF_DR_Light3_Dimmer "Dimmer [%d %%]" (gDR) {channel="hue:0210:1:10:color"}
+Color FF_DR_Light3_Color "Color" <colorlight> (gDR) {channel="hue:0210:1:10:color"}
+Dimmer FF_DR_Light3_ColorTemp "Color Temp" (gDR) {channel="hue:0210:1:10:color_temperature"}
+String FF_DR_Light3_Alert "Flash" <alarm> (gDR) {channel="hue:0210:1:10:alert"}
+Switch FF_DR_Light3_Effect "Color Loop" (gDR) {channel="hue:0210:1:10:effect"}
+
+//***Living Room Items***
+//Living Room 1 Light 
+Switch FF_LR_Light1_Toggle "Power" (gLR) {channel="hue:0210:1:4:color"}
+Dimmer FF_LR_Light1_Dimmer "Dimmer [%d %%]" (gLR) {channel="hue:0210:1:4:color"}
+Color FF_LR_Light1_Color "Color" <colorlight> (gLR) {channel="hue:0210:1:4:color"}
+Dimmer FF_LR_Light1_ColorTemp "Color Temp" (gLR) {channel="hue:0210:1:4:color_temperature"}
+String FF_LR_Light1_Alert "Flash" <alarm> (gLR) {channel="hue:0210:1:4:alert"}
+Switch FF_LR_Light1_Effect "Color Loop" (gLR) {channel="hue:0210:1:4:effect"}
+
+//Living Room 2 Light 
+Switch FF_LR_Light2_Toggle "Power" (gLR) {channel="hue:0210:1:1:color"}
+Dimmer FF_LR_Light2_Dimmer "Dimmer [%d %%]" (gLR) {channel="hue:0210:1:1:color"}
+Color FF_LR_Light2_Color "Color" <colorlight> (gLR) {channel="hue:0210:1:1:color"}
+Dimmer FF_LR_Light2_ColorTemp "Color Temp" (gLR) {channel="hue:0210:1:1:color_temperature"}
+String FF_LR_Light2_Alert "Flash" <alarm> (gLR) {channel="hue:0210:1:1:alert"}
+Switch FF_LR_Light2_Effect "Color Loop" (gLR) {channel="hue:0210:1:1:effect"}
+
+//Living Room 3 Light 
+Switch FF_LR_Light3_Toggle "Power" (gLR) {channel="hue:0210:1:9:color"}
+Dimmer FF_LR_Light3_Dimmer "Dimmer [%d %%]" (gLR) {channel="hue:0210:1:9:color"}
+Color FF_LR_Light3_Color "Color" <colorlight> (gLR) {channel="hue:0210:1:9:color"}
+Dimmer FF_LR_Light3_ColorTemp "Color Temp" (gLR) {channel="hue:0210:1:9:color_temperature"}
+String FF_LR_Light3_Alert "Flash" <alarm> (gLR) {channel="hue:0210:1:9:alert"}
+Switch FF_LR_Light3_Effect "Color Loop" (gLR) {channel="hue:0210:1:9:effect"}
+
+//Living Room 4 Light
+Switch FF_LR_Light4_Switch "Power" (gLR) {channel="zwave:device:c711576c:node11:switch_dimmer"}
+Dimmer FF_LR_Light4_Dimmer "Dimmer [%d %%]" (gLR) {channel="zwave:device:c711576c:node11:switch_dimmer"}
+
+//Living Sonos
+String FF_LR_Sonos_Zone  "[%s]"  (gLR)   {channel="sonos:zoneplayer:3:zonename"}
+String FF_LR_Sonos_Track  "Track [%s]" <player> (gLR)   {channel="sonos:zoneplayer:3:currenttrack"}
+String FF_LR_Sonos_Title  "Title [%s]" <player> (gLR)   {channel="sonos:zoneplayer:3:currenttitle"}
+String FF_LR_Sonos_Album  "Album [%s]" <player> (gLR)   {channel="sonos:zoneplayer:3:currentalbum"}
+String FF_LR_Sonos_Artist  "Artist [%s]"  <player> (gLR)   {channel="sonos:zoneplayer:3:currentartist"}
+Player FF_LR_Sonos_Control "" (gLR) {channel="sonos:zoneplayer:3:control"}
+Dimmer FF_LR_Sonos_Volume  "[%d %%]" <soundvolume> (gLR) {channel="sonos:zoneplayer:3:volume"}
+
+//Living Room Harmony
+String FF_LR_Harmony_Activity "Activity" <television> (gLR) {channel="harmonyhub:hub:HarmonyUpstairs:currentActivity"}
+
+//***Entrance Items***
+//Entrance Light
+Switch FF_EN_Light1_Toggle "Power" (gEN) {channel="hue:0210:1:8:color"}
+Dimmer FF_EN_Light1_Dimmer "Dimmer [%d %%]" (gEN) {channel="hue:0210:1:8:color"}
+Color FF_EN_Light1_Color "Color" <colorlight> (gEN) {channel="hue:0210:1:8:color"}
+Dimmer FF_EN_Light1_ColorTemp "Color Temp" (gEN) {channel="hue:0210:1:8:color_temperature"}
+String FF_EN_Light1_Alert "Flash" <alarm> (gEN) {channel="hue:0210:1:8:alert"}
+Switch FF_EN_Light1_Effect "Color Loop" (gEN) {channel="hue:0210:1:8:effect"}
+
+//***Outside Items***
+//Outside 1 Light 
+Switch Outside_Light1_Toggle "Power" (gFront) {channel="hue:0210:1:12:color"}
+Dimmer Outside_Light1_Dimmer "Dimmer [%d %%]" (gFront) {channel="hue:0210:1:12:color"}
+Color Outside_Light1_Color "Color" <colorlight> (gFront) {channel="hue:0210:1:12:color"}
+Dimmer Outside_Light1_ColorTemp "Color Temp" (gFront) {channel="hue:0210:1:12:color_temperature"}
+String Outside_Light1_Alert "Flash" <alarm> (gFront) {channel="hue:0210:1:12:alert"}
+Switch Outside_Light1_Effect "Color Loop" (gFront) {channel="hue:0210:1:12:effect"}
+
+//Outside 2 Light 
+Switch Outside_Light2_Toggle "Power" (gFront) {channel="hue:0210:1:7:color"}
+Dimmer Outside_Light2_Dimmer "Dimmer [%d %%]" (gFront) {channel="hue:0210:1:2:color"}
+Color Outside_Light2_Color "Color" <colorlight> (gFront) {channel="hue:0210:1:2:color"}
+Dimmer Outside_Light2_ColorTemp "Color Temp" (gFront) {channel="hue:0210:1:2:color_temperature"}
+String Outside_Light2_Alert "Flash" <alarm> (gFront) {channel="hue:0210:1:2:alert"}
+Switch Outside_Light2_Effect "Color Loop" (gFront) {channel="hue:0210:1:2:effect"}
+
+//Outside 3 Light 
+Switch Outside_Light3_Toggle "Power" (gFront) {channel="hue:0210:1:3:color"}
+Dimmer Outside_Light3_Dimmer "Dimmer [%d %%]" (gFront) {channel="hue:0210:1:3:color"}
+Color Outside_Light3_Color "Color" <colorlight> (gFront) {channel="hue:0210:1:3:color"}
+Dimmer Outside_Light3_ColorTemp "Color Temp" (gFront) {channel="hue:0210:1:3:color_temperature"}
+String Outside_Light3_Alert "Flash" <alarm> (gFront) {channel="hue:0210:1:3:alert"}
+Switch Outside_Light3_Effect "Color Loop" (gFront) {channel="hue:0210:1:3:effect"}
+
+//Outside 4 Light
+Switch Outside_Light4_Toggle "Power" (gSide) {channel="hue:0100:1:17:brightness"}
+Dimmer Outside_Light4_Dimmer "Dimmer" (gSide) {channel="hue:0100:1:17:brightness"}
+String Outside_Light4_Alert "Flash" <alarm> (gSide) {channel="hue:0100:1:17:alert"}
+
+//Outside Camera Motion
+Switch Outside_Camera1_Motion "Camera Motion [%s]" <camera> (gFront) {mqtt="<[mosquitto:camera/event/motion/cam1:command:default]"}
+
+//Astro Items
+DateTime Sunrise_Time       "Sunrise [%1$tH:%1$tM]" 	<sunrise>		(gOutside)	{ channel="astro:sun:home:rise#start" }
+DateTime Sunset_Time        "Sunset [%1$tH:%1$tM]" 	<sunset>		(gOutside)	{ channel="astro:sun:home:set#start" }
+Number   Azimuth            "Azimuth"                	<sun>			(gOutside)	{ channel="astro:sun:home:position#azimuth" }
+Number   Elevation          "Elevation"             	<sun>			(gOutside)	{ channel="astro:sun:home:position#elevation" }
+String   MoonPhase          "MoonPhase [%s]"        	<moon>			(gOutside)	{ channel="astro:moon:home:phase#name" }
+Number   Total_Radiation    "Radiation"           	<smoke>			(gOutside)	{ channel="astro:sun:home:radiation#total" }
+
+//***Ground Floor***
+//Downstairs Kitchen Items
+Switch GF_DK_Light1_Switch "Power" (gDK) {channel="zwave:device:c711576c:node2:switch_dimmer"}
+Dimmer GF_DK_Light1_Dimmer "Dimmer [%d %%]" (gDK) {channel="zwave:device:c711576c:node2:switch_dimmer"}
+
+//Downstairs Hallway Items
+Switch GF_DH_Light1_Switch "Power" (gDH) {channel="zwave:device:c711576c:node37:switch_dimmer"}
+Dimmer GF_DH_Light1_Dimmer "Dimmer [%d %%]" (gDH) {channel="zwave:device:c711576c:node37:switch_dimmer"}
+
+//Lab Items
+//Lab 1 Light
+Switch GF_Lab_Light1_Switch "Power" (gLab) {channel="zwave:device:c711576c:node3:switch_dimmer"}
+Dimmer GF_Lab_Light1_Dimmer "Dimmer [%d %%]" (gLab) {channel="zwave:device:c711576c:node3:switch_dimmer"}
+
+//Lab 2 Light
+Switch GF_Lab_Light2_Toggle "Power" (gLab) {channel="hue:0100:1:16:brightness"}
+Dimmer GF_Lab_Light2_Dimmer "Dimmer" (gLab) {channel="hue:0100:1:16:brightness"}
+String GF_Lab_Light2_Alert "Flash" <alarm> (gLab) {channel="hue:0100:1:16:alert"}
+
+//Lab 3 Light
+Switch GF_Lab_Light3_Toggle "Power" (gLab) {channel="hue:0210:1:14:color"}
+Dimmer GF_Lab_Light3_Dimmer "Dimmer [%d %%]" (gLab) {channel="hue:0210:1:14:color"}
+Color GF_Lab_Light3_Color "Color" <colorlight> (gLab) {channel="hue:0210:1:14:color"}
+Dimmer GF_Lab_Light3_ColorTemp "Color Temp" (gLab) {channel="hue:0210:1:14:color_temperature"}
+String GF_Lab_Light3_Alert "Flash" <alarm> (gLab) {channel="hue:0210:1:14:alert"}
+Switch GF_Lab_Light3_Effect "Color Loop" (gLab) {channel="hue:0210:1:14:effect"}
+
+//Lab Sonos
+String GF_Lab_Sonos_Zone  "[%s]"  (gLab)   {channel="sonos:zoneplayer:4:zonename"}
+String GF_Lab_Sonos_Track  "Track [%s]" <player> (gLab)   {channel="sonos:zoneplayer:4:currenttrack"}
+String GF_Lab_Sonos_Title  "Title [%s]" <player> (gLab)   {channel="sonos:zoneplayer:4:currenttitle"}
+String GF_Lab_Sonos_Album  "Album [%s]" <player> (gLab)   {channel="sonos:zoneplayer:4:currentalbum"}
+String GF_Lab_Sonos_Artist  "Artist [%s]"  <player> (gLab)   {channel="sonos:zoneplayer:4:currentartist"}
+Player GF_Lab_Sonos_Control "" (gLab) {channel="sonos:zoneplayer:4:control"}
+Dimmer GF_Lab_Sonos_Volume  "[%d %%]" <soundvolume> (gLab) {channel="sonos:zoneplayer:4:volume"}
+
+//Lab Harmony
+String GF_Lab_Harmony_Activity "Activity" <television> (gLab) {channel="harmonyhub:hub:HarmonyDownstairs:currentActivity"}
+
+//Lab Wemo
+Switch GF_Lab_Wemo_Switch "On/Off" (gLab) {channel="wemo:socket:LabWemo:state"}
+
+//Lab Philips Bar
+//Switch GF_Lab_SpeakerBar_Switch "On/Off" (gLab) {channel="harmonyhub:device:HarmonyDownstairs:40079322:buttonPress"}

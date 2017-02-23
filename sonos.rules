@@ -1,0 +1,118 @@
+//Sonos timers
+var Timer BR_Sonos_Timer = null
+var Timer SBR_Sonos_Timer = null
+var Timer LR_Sonos_Timer = null
+var Timer Lab_Sonos_Timer = null
+
+//Bedroom Sonos
+rule "Perform tasks when the bedroom Sonos starts playing"
+when
+	Item FF_BR_Sonos_Control changed to PLAY	
+then
+	if(BR_Sonos_Timer != null) {
+		BR_Sonos_Timer.cancel()
+		BR_Sonos_Timer = null
+	}
+	sendCommand(FF_BR_Wemo_Switch, ON)
+	
+	//If it's the Rosary in the Bedroom	
+	if(FF_BR_Sonos_Track.state.toString.contains("Rosary")) {
+		var DecimalType hue = new DecimalType(262) // 0-360; 0=red, 120=green, 240=blue, 360=red(again)
+		var PercentType sat = new PercentType(100) // 0-100
+		var PercentType bright = new PercentType(20) // 0-100
+		var HSBType light = new HSBType(hue,sat,bright)		
+
+		//Change this light color and brightness
+		sendCommand(FF_BR_Light1_Color, light)		
+
+		//Turn this light off
+		sendCommand(FF_BR_Light2_Toggle, OFF)
+
+		//Send an alert to the following bulbs
+		sendCommand(GF_Lab_Light2_Alert, "LSELECT")	
+		sendCommand(GF_Lab_Light3_Alert, "LSELECT")
+		sendCommand(FF_DR_Light2_Alert, "LSELECT")
+		sendCommand(FF_LR_Light2_Alert, "LSELECT")
+		sendCommand(FF_SBR_Light2_Alert, "LSELECT")	
+	}
+end
+
+rule "Perform tasks when the  bedroom Sonos stops playing"
+when
+	Item FF_BR_Sonos_Control changed to PAUSE
+then
+	BR_Sonos_Timer = createTimer(now.plusSeconds(30), [|
+		sendCommand(FF_BR_Wemo_Switch, OFF)
+		BR_Sonos_Timer = null
+	])
+end
+//End Bedroom Sonos
+
+//****Sophie's Room Sonos*******
+rule "Perform tasks when Sophie's room Sonos starts playing"
+when
+	Item FF_SBR_Sonos_Control changed to PLAY	
+then
+	if(SBR_Sonos_Timer != null) {
+		SBR_Sonos_Timer.cancel()
+		SBR_Sonos_Timer = null
+	}
+	sendCommand(FF_SBR_Wemo_Switch, ON)
+end
+
+rule "Perform tasks when Sophie's room Sonos stops playing"
+when
+	Item FF_SBR_Sonos_Control changed to PAUSE
+then
+	SBR_Sonos_Timer = createTimer(now.plusSeconds(30), [|
+		sendCommand(FF_SBR_Wemo_Switch, OFF)
+		SBR_Sonos_Timer = null
+	])
+end
+//***End Sophie's Room Sonos*************
+
+//****Living Room Sonos*******
+rule "Perform tasks when the living room Sonos starts playing"
+when
+	Item FF_LR_Sonos_Control changed to PLAY	
+then
+	if(LR_Sonos_Timer != null) {
+		LR_Sonos_Timer.cancel()
+		LR_Sonos_Timer = null
+	}
+	sendCommand(Harmony_FF_LR_Activity, "Listen To Living Room Sonos")
+end
+
+rule "Perform tasks when the living room Sonos stops playing"
+when
+	Item FF_LR_Sonos_Control changed to PAUSE
+then
+	LR_Sonos_Timer = createTimer(now.plusSeconds(30), [|
+		sendCommand(FF_LR_Harmony_Activity, "PowerOff")
+		LR_Sonos_Timer = null
+	])
+end
+//***End Living Room Sonos*************
+
+//****Lab Sonos*******
+rule "Perform tasks when the lab Sonos starts playing"
+when
+	Item GF_Lab_Sonos_Control changed to PLAY	
+then
+	if(Lab_Sonos_Timer != null) {
+		Lab_Sonos_Timer.cancel()
+		Lab_Sonos_Timer = null
+	}
+	sendCommand(GF_Lab_Harmony_Activity, "Listen to Lab Sonos")
+end
+
+rule "Perform tasks when the lab Sonos stops playing"
+when
+	Item GF_Lab_Sonos_Control changed to PAUSE
+then
+	Lab_Sonos_Timer = createTimer(now.plusSeconds(30), [|
+		sendCommand(GF_Lab_Harmony_Activity, "PowerOff")
+		Lab_Sonos_Timer = null
+	])
+end
+//***End Lab Sonos*************
